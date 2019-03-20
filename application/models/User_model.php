@@ -10,6 +10,7 @@ class User_model extends CI_Model {
 	}
 
 	function get_user($arr=null, $limit=null, $offset=null){
+		$this->db->join('branches', 'branches.branch_id = users.branch_id', 'left');
 		return $this->db->get_where('users', $arr, $limit, $offset);
 	}
 

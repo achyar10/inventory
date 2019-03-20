@@ -15,6 +15,7 @@
   <link href="<?php echo site_url() ?>assets/css/style.min.css" rel="stylesheet">
 
   <script src="<?php echo site_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="<?php echo site_url() ?>assets/js/jquery.validate.min.js"></script>
 </head>
 
 <body>

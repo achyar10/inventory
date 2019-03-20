@@ -48,6 +48,11 @@
           </a>
         </li>
 
+         <li class="sidebar-item"> 
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('user') ?>" aria-expanded="false">
+            <i class="mdi mdi-account-multiple"></i><span class="hide-menu">Pengguna</span>
+          </a>
+        </li>
 
       </ul>
 
