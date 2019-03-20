@@ -17,14 +17,14 @@
 
 </head>
 
-<body>
+<body style="background-color: #eef5f9">
 	<div class="main-wrapper">
 		
 		<div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
 			<div class="auth-box">
 				<div id="loginform">
 					<div class="logo">
-						<span class="db"><img src="../../assets/images/logo-icon.png" alt="logo" /></span>
+						<span class="db"><img src="<?php echo site_url() ?>assets/images/logo-icon.png" alt="logo" /></span>
 						<h5 class="font-medium m-b-20">Sign In to Admin</h5>
 					</div>
 					<!-- Form -->
@@ -46,7 +46,7 @@
 								</div>
 								<div class="form-group text-center">
 									<div class="col-xs-12 p-b-20">
-										<button class="btn btn-block btn-lg btn-success" type="submit">Login</button>
+										<button class="btn btn-block btn-lg btn-dark" type="submit">Login</button>
 									</div>
 								</div>
 							</form>
