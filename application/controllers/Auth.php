@@ -46,9 +46,10 @@ class Auth extends CI_Controller {
 			if(!empty($user) && password_verify($password, $user->user_password)){
 
 				$session = array(
+					'user_id'							=> $user->user_id,
 					'username'							=> $user->user_name,
 					'full_name'							=> $user->user_full_name,
-					'roluser_role'					=> $user->user_role,
+					'user_role'							=> $user->user_role,
 					'branch_id'							=> $user->branch_id,
 					'logged' 								=> TRUE
 				);
@@ -69,9 +70,10 @@ class Auth extends CI_Controller {
 
 	function logout(){
 		$sessions_items = array(
+			'user_id',							
 			'username',							
 			'full_name',							
-			'roluser_role',					
+			'user_role',					
 			'branch_id',							
 			'logged' 								
 		);

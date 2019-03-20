@@ -15,7 +15,7 @@
                   <span class="op-5 user-email"><?php echo $this->session->userdata('username'); ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
-                  <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                  <a class="dropdown-item" href="<?php echo site_url('profile') ?>"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                 </div>
