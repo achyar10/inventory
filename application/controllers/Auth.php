@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		redirect('auth/login');	
+		$this->login();	
 	}
 
 	// public function register(){
@@ -29,30 +29,50 @@ class Auth extends CI_Controller {
 
 	function login(){
 
-		// if($this->session->userdata('logged')){
-		// 	redirect('dashboard');
-		// }
+		if($this->session->userdata('logged')) redirect('dashboard');
 
-		if($_POST){
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 
-			$username = $this->input->post('user_name', TRUE);
-			$password = $this->input->post('user_password', TRUE);
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger"><button position="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>');
+
+		if($_POST AND $this->form_validation->run() == TRUE){
+
+			$username = $this->input->post('username', TRUE);
+			$password = $this->input->post('password', TRUE);
 
 			$user = $this->User_model->get_user(array('user_name'=> $username))->row();
 
 			if(!empty($user) && password_verify($password, $user->user_password)){
-				echo 'berhasil login';
+
+				$session = array(
+					'user_data' => array(
+						'username'							=> $user->user_name,
+						'full_name'							=> $user->user_full_name,
+						'roluser_role'					=> $user->user_role,
+						'branch_id'							=> $user->branch_id
+					),
+					'logged' 											=> TRUE
+				);
+				$this->session->set_userdata($session);
+
+				redirect('dashboard');
 			} else {
-				// redirect('auth/login');
-				echo 'gagal login';
+				redirect('auth/login');
+
 			}
 
 		} else {
 
-
 			$data['title'] = 'Login';
 			$this->load->view('login', $data);
 		}
+	}
+
+	function logout(){
+		$sessions_items = array('user_data','logged');
+		$this->session->unset_userdata($sessions_items);
+		redirect('auth/login');
 	}
 
 }
