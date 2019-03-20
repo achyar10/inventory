@@ -10,7 +10,7 @@ class Branch_model extends CI_Model {
 	}
 
 	function insert_branch($data){
-		return $this->db->insert('branches'. $data);
+		return $this->db->insert('branches', $data);
 	}
 
 	function update_branch($data, $condition){
