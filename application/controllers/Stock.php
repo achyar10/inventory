@@ -44,9 +44,12 @@ class Stock extends CI_Controller {
 	}
 
 	function add(){
+
+		$this->db->trans_start();
+
 		$lastno = $this->Stock_model->get_stock(null,1)->row_array();
 
-		if (pretty_date($lastno['stock_created_at'],'Y',false) < date('Y') OR count($lastno) == 0) {
+		if (date('Y', strtotime($lastno['stock_created_at'])) < date('Y') OR count($lastno) == 0) {
 			$nomor = sprintf('%04d', '0001');
 			$no_trx = $nomor .'/ST-'. date('Ym');
 		} else {
@@ -76,8 +79,17 @@ class Stock extends CI_Controller {
 		$this->db->insert_batch('stock_details', $stock_detail);
 		$this->Stock_model->update_stock_batch($item, $qty, '+');
 
-		
+		$this->db->trans_complete();
 
+		if($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('failed','Data not saved.');
+			redirect('stock');
+		} else {
+			$this->db->trans_commit();
+			$this->session->set_flashdata('success','Data saved.');
+			redirect('stock');
+		} 
 	}
 
 	public function getItem(){
@@ -100,6 +112,15 @@ class Stock extends CI_Controller {
 			));
 		}
 		exit(json_encode($items));
+	}
+
+	function detail($id=null){
+
+		$data['stock'] = $this->Stock_model->get_stock(['stock_id'=>$id])->row();
+		$data['detail'] = $this->Stock_model->get_stock_detail(['stock_details.stock_id'=>$id])->result();
+		$data['title'] = 'Stok Detail';
+		$data['main'] = 'stock/detail';
+		$this->load->view('templates/layout', $data);
 	}
 
 }

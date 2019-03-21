@@ -37,6 +37,12 @@
         </li>
 
         <li class="sidebar-item"> 
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('stock') ?>" aria-expanded="false">
+            <i class="mdi mdi-file-check"></i><span class="hide-menu">Stok</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item"> 
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('branch') ?>" aria-expanded="false">
             <i class="mdi mdi-home-variant"></i><span class="hide-menu">Cabang</span>
           </a>
