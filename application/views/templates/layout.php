@@ -13,6 +13,7 @@
   <title><?php echo $title ?></title>
   <!-- Custom CSS -->
   <link href="<?php echo site_url() ?>assets/css/style.min.css" rel="stylesheet">
+  <link href="<?php echo site_url() ?>assets/css/noty.css" rel="stylesheet">
 
   <script src="<?php echo site_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="<?php echo site_url() ?>assets/js/jquery.validate.min.js"></script>
@@ -81,7 +82,14 @@
   </div>
 </div>
 
+    <?php
+    if ($this->session->flashdata('success')) {
+      
+      }
+    ?>
+
 <!-- Bootstrap tether Core JavaScript -->
+<script src="<?php echo site_url() ?>assets/js/jquery.noty.packaged.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo site_url() ?>assets/js/app-style-switcher.js"></script>
