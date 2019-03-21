@@ -42,7 +42,7 @@
                       <td><?php echo $row->branch_name ?></td>
                       <td><?php echo $row->stock_created_at ?></td>
                       <td>
-                        <a href="#" class="btn btn-info btn-sm">Detail</a>
+                        <a href="<?php echo site_url('stock/detail/'.$row->stock_id) ?>" class="btn btn-dark btn-sm">Detail</a>
                       </td>
                     </tr>
                     <?php
@@ -126,7 +126,7 @@
           $.each(data, function (idx, obj) {                                   
             table += ('<tr>');
             table += ('<td>' + i + '</td>');
-            table += ('<td>' + obj.item_name + '</td>');
+            table += ('<td><input type="hidden" name="item_id[]" value="'+ obj.item_id +'">' + obj.item_name + '</td>');
             table += ('<td>' + obj.item_stock + '</td>');
             table += ('<td><input type="number" name="qty[]" class="form-control" value="0"></td>');
             table += ('</tr>');

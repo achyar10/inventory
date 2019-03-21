@@ -4,7 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Stock_model extends CI_Model {
 
 	public function get_stock($arr=null, $limit=null, $offset=null){
+		$this->db->join('users', 'users.user_id = stocks.user_id', 'left');
+		$this->db->join('branches', 'branches.branch_id = stocks.branch_id', 'left');
 		return $this->db->get_where('stocks', $arr, $limit, $offset);
+	}
+
+	public function get_stock_detail($arr=null, $limit=null, $offset=null){
+		$this->db->join('items', 'items.item_id = stock_details.item_id', 'left');
+		$this->db->join('stocks', 'stocks.stock_id = stock_details.stock_id', 'left');
+		return $this->db->get_where('stock_details', $arr, $limit, $offset);
 	}
 
 	function insert_stock($data){
