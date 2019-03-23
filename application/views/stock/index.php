@@ -86,9 +86,14 @@
           </div>
           <div class="table-responsive" id="tableContainer" style="display: none;">
           </div>
+          <div class="alert alert-warning" id="tableContainerNone" style="display: none;">
+            <center>
+              Data barang kosong
+            </center>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success waves-effect">Tambah Data</button>
+          <button type="submit" id="buttonData" class="btn btn-success waves-effect">Tambah Data</button>
         </div>
       </form>
     </div>
@@ -112,6 +117,7 @@
         url: "<?php echo site_url('stock/getItem') ?>",
         data: "branch_id="+branch_id,
         success: function(data){
+          console.log(data);
           if(data.branch_id != ''){
           var table = `<table class="table">
               <thead>
@@ -134,9 +140,12 @@
           });
           table += '</table>';
           $("#tableContainer").css('display','');
+          $("#tableContainerNone").css('display','none');
           $("#tableContainer").html(table);
         } else {
           $("#tableContainer").css('display','none');
+          $("#tableContainerNone").css('display','');
+          $("#buttonData").prop('disabled',true);
         }
         }
       })
