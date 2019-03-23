@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo site_url() ?>assets/images/favicon.png">
   <title><?php echo $title ?></title>
   <!-- Custom CSS -->
   <link href="<?php echo site_url() ?>assets/css/style.min.css" rel="stylesheet">
@@ -82,12 +82,6 @@
   </div>
 </div>
 
-    <?php
-    if ($this->session->flashdata('success')) {
-      
-      }
-    ?>
-
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?php echo site_url() ?>assets/js/jquery.noty.packaged.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -100,5 +94,31 @@
 <!--Custom JavaScript -->
 <script src="<?php echo site_url() ?>assets/js/custom.js"></script>
 </body>
+
+  <?php if ($this->session->flashdata('success')) { ?>
+<script type="text/javascript">
+   $(document).ready(function () {
+
+                noty({
+                text        : '<div class="activity-item"> <i class="fa fa-check text-success"></i> <div class="activity"> <?php echo $this->session->flashdata('success') ?> </div> </div>',
+                type        : 'success',
+                dismissQueue: true,
+                progressBar : true,
+                timeout     : 5000,
+                layout      : 'topRight',
+                closeWith   : ['click'],
+                theme       : 'relax',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+
+        });
+</script>
+<?php } ?>
 
 </html>

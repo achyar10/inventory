@@ -43,6 +43,7 @@ class Distributor extends CI_Controller {
 	function add(){
 		$params['distributor_name'] = $this->input->post('distributor_name');
 		$this->Distributor_model->insert_distributor($params);
+		$this->session->set_flashdata('success', 'Tambah distributor berhasil');
 		redirect('distributor');
 	}
 
