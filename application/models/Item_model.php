@@ -11,7 +11,8 @@ class Item_model extends CI_Model {
 	}
 
 	function insert_item($data){
-		return $this->db->insert('items', $data);
+		$this->db->insert('items', $data);
+		return $this->db->insert_id();
 	}
 
 	function update_item($data, $condition){

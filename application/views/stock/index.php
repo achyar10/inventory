@@ -141,6 +141,7 @@
           table += '</table>';
           $("#tableContainer").css('display','');
           $("#tableContainerNone").css('display','none');
+          $("#buttonData").prop('disabled',false);
           $("#tableContainer").html(table);
         } else {
           $("#tableContainer").css('display','none');

@@ -74,8 +74,8 @@
         <h4 class="modal-title" id="formModalLabel">Tambah Cabang</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
+      <form action="<?php echo site_url('item/add') ?>" id="formItem" method="post" enctype="multipart/form-data">
       <div class="modal-body">
-        <form action="<?php echo site_url('item/add') ?>" method="post" enctype="multipart/form-data">
           <input type="hidden" name="id" id="id">
           <div class="form-group">
             <label>SKU</label>
@@ -153,7 +153,7 @@
     $('.tombolTambahData').on('click', function() {
       $('#formModalLabel').html('Tambah Barang');
       $('.modal-footer button[type=submit]').html('Tambah Data');
-      $('.modal-body form').attr('action', '<?php echo site_url('item/add') ?>');
+      $('#formItem').attr('action', '<?php echo site_url('item/add') ?>');
       $('#item_sku').val('');
       $('#item_name').val('');
       $('#item_merk').val('');
@@ -166,7 +166,7 @@
 
       $('#formModalLabel').html('Ubah Data Barang');
       $('.modal-footer button[type=submit]').html('Ubah Data');
-      $('.modal-body form').attr('action', '<?php echo site_url('item/edit') ?>');
+      $('#formItem').attr('action', '<?php echo site_url('item/edit') ?>');
 
       const id = $(this).data('id');
 

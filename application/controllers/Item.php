@@ -53,12 +53,18 @@ class Item extends CI_Controller {
 		$params['distributor_id'] = $this->input->post('distributor_id');
 		$params['item_stock'] = 0;
 
-		$full = time().rand(1111,9999);
+		$id = $this->Item_model->insert_item($params);
+
+		$fullname = time().rand(1111,9999);
+
 		if (!empty($_FILES['item_image']['name'])) {
-			$params['item_image'] = $this->upload_image($name = 'item_image', $fileName= $full);
+			$paramsUpdate['item_image'] = $this->upload_image('item_image', $fullname);
+			// echo $paramsUpdate['item_image'];
+			// echo $id;
+			// die();
+			$this->Item_model->update_item($paramsUpdate, ['item_id'=>$id]);
 		} 
 
-		$this->Item_model->insert_item($params);
 		$this->session->set_flashdata('success', 'Tambah barang berhasil');
 		redirect('item');
 	}
@@ -89,18 +95,17 @@ class Item extends CI_Controller {
 		echo json_encode($this->Item_model->get_item(['item_id'=>$id])->row_array());
 	}
 
-	function upload_image($name=NULL, $fileName=NULL, $dir=null) {
+	function upload_image($name=NULL, $fileName=NULL) {
 		$this->load->library('upload');
 
 		$config['upload_path'] = FCPATH . 'uploads/items/';
 
 		/* create directory if not exist */
 		if (!is_dir($config['upload_path'])) {
-			mkdir($config['upload_path'], 0777, TRUE);
+			mkdir($config['upload_path'], 0755, TRUE);
 		}
 
 		$config['allowed_types'] = 'gif|jpg|jpeg|png';
-		$config['max_size'] = '1024';
 		$config['file_name'] = $fileName;
 		$this->upload->initialize($config);
 
