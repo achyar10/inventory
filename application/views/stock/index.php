@@ -117,7 +117,6 @@
         url: "<?php echo site_url('stock/getItem') ?>",
         data: "branch_id="+branch_id,
         success: function(data){
-          console.log(data);
           if(data.branch_id != ''){
           var table = `<table class="table">
               <thead>
@@ -134,7 +133,7 @@
             table += ('<td>' + i + '</td>');
             table += ('<td><input type="hidden" name="item_id[]" value="'+ obj.item_id +'">' + obj.item_name + '</td>');
             table += ('<td>' + obj.item_stock + '</td>');
-            table += ('<td><input type="number" name="qty[]" class="form-control" value="0"></td>');
+            table += ('<td><input type="number" name="qty[]" class="form-control qtyItem" value="0"></td>');
             table += ('</tr>');
             i++
           });

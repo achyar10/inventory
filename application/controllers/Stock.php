@@ -76,20 +76,26 @@ class Stock extends CI_Controller {
 				]);
 			}
 		}
+		if(!empty($stock_detail)){
+
 		$this->db->insert_batch('stock_details', $stock_detail);
 		$this->Stock_model->update_stock_batch($item, $qty, '+');
 
 		$this->db->trans_complete();
 
-		if($this->db->trans_status() === FALSE) {
-			$this->db->trans_rollback();
-			$this->session->set_flashdata('failed','Data not saved.');
+			if($this->db->trans_status() === FALSE) {
+				$this->db->trans_rollback();
+				$this->session->set_flashdata('failed','Data not saved.');
+				redirect('stock');
+			} else {
+				$this->db->trans_commit();
+				$this->session->set_flashdata('success','Data saved.');
+				redirect('stock');
+			} 
+		}else{
+			$this->session->set_flashdata('failed','Quantity tidak boleh 0 semua');
 			redirect('stock');
-		} else {
-			$this->db->trans_commit();
-			$this->session->set_flashdata('success','Data saved.');
-			redirect('stock');
-		} 
+		}
 	}
 
 	public function getItem(){

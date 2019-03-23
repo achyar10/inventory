@@ -123,7 +123,7 @@
    $(document).ready(function () {
 
                 noty({
-                text        : '<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> <?php echo $this->session->flashdata('failed') ?> </div> </div>',
+                text        : '<div class="activity-item"> <i class="fa fa-window-close text-danger"></i> <div class="activity"> <?php echo $this->session->flashdata('failed') ?> </div> </div>',
                 type        : 'failed',
                 dismissQueue: true,
                 progressBar : true,
