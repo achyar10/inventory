@@ -95,8 +95,8 @@
 <script src="<?php echo site_url() ?>assets/js/custom.js"></script>
 </body>
 
-  <?php if ($this->session->flashdata('success')) { ?>
 <script type="text/javascript">
+  <?php if ($this->session->flashdata('success')) { ?>
    $(document).ready(function () {
 
                 noty({
@@ -118,7 +118,30 @@
             });
 
         });
-</script>
 <?php } ?>
+  <?php if ($this->session->flashdata('failed')) { ?>
+   $(document).ready(function () {
+
+                noty({
+                text        : '<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> <?php echo $this->session->flashdata('failed') ?> </div> </div>',
+                type        : 'failed',
+                dismissQueue: true,
+                progressBar : true,
+                timeout     : 5000,
+                layout      : 'topRight',
+                closeWith   : ['click'],
+                theme       : 'relax',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+
+        });
+<?php } ?>
+</script>
 
 </html>

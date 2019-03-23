@@ -49,7 +49,7 @@ class Stock extends CI_Controller {
 
 		$lastno = $this->Stock_model->get_stock(null,1)->row_array();
 
-		if (date('Y', strtotime($lastno['stock_created_at'])) < date('Y') OR count($lastno) == 0) {
+		if (date('Y', strtotime($lastno['stock_created_at'])) < date('Y') OR (count($lastno)) == 0) {
 			$nomor = sprintf('%04d', '0001');
 			$no_trx = $nomor .'/ST-'. date('Ym');
 		} else {

@@ -51,6 +51,7 @@ class Distributor extends CI_Controller {
 		$id = $this->input->post('id');
 		$params['distributor_name'] = $this->input->post('distributor_name');
 		$this->Distributor_model->update_distributor($params, ['distributor_id'=>$id]);
+		$this->session->set_flashdata('success', 'Edit distributor berhasil');
 		redirect('distributor');
 	}
 

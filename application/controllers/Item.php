@@ -59,6 +59,7 @@ class Item extends CI_Controller {
 		} 
 
 		$this->Item_model->insert_item($params);
+		$this->session->set_flashdata('success', 'Tambah barang berhasil');
 		redirect('item');
 	}
 
@@ -77,6 +78,7 @@ class Item extends CI_Controller {
 		} 
 
 		$this->Item_model->update_item($params, ['item_id'=>$id]);
+		$this->session->set_flashdata('success', 'Edit barang berhasil');
 		redirect('item');
 	}
 

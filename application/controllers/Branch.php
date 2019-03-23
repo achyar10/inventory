@@ -46,6 +46,7 @@ class Branch extends CI_Controller {
 		$params['branch_address'] = $this->input->post('branch_address');
 
 		$this->Branch_model->insert_branch($params);
+		$this->session->set_flashdata('success', 'Tambah cabang berhasil');
 		redirect('branch');
 	}
 
@@ -56,6 +57,7 @@ class Branch extends CI_Controller {
 		$params['branch_address'] = $this->input->post('branch_address');
 
 		$this->Branch_model->update_branch($params, ['branch_id'=>$id]);
+		$this->session->set_flashdata('success', 'Edit cabang berhasil');
 		redirect('branch');
 	}
 

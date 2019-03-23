@@ -16,6 +16,7 @@ class Profile extends CI_Controller {
 
 			$params['user_full_name'] = $this->input->post('user_full_name');
 			$this->User_model->update_user($params, ['user_id'=>$this->session->userdata('user_id')]);
+		$this->session->set_flashdata('success', 'Edit profil berhasil');
 			redirect('profile');
 
 		} else {
