@@ -35,6 +35,7 @@ class Stock extends CI_Controller {
 
 		$data['jlhpage']= $page;
 		$data['stock'] = $this->Stock_model->get_stock(null,$limit,$offset)->result();
+		$data['item'] = $this->Item_model->get_item()->result_array();
 
 		$data['title'] = 'Stok';
 		$data['main'] = 'stock/index';
@@ -96,25 +97,21 @@ class Stock extends CI_Controller {
 	}
 
 	public function getItem(){
-		$branch_id = $this->input->post('branch_id');
+		$item_id = $this->input->post('item_id');
 
-		$res = $this->Item_model->get_item(array('items.branch_id'=>$branch_id))->result_array();
+		$res = $this->Item_model->get_item(array('items.item_id'=>$item_id))->row_array();
 		if(count($res)==0){
 			$result = json_encode(array(
-				'branch_id' => ''
+				'item_id' => ''
 			));
 			exit($result);
 		}
 
-		$items = array();
-		for ($i = 0; $i < count($res); $i++) {
-			array_push($items, array(
-				'item_id' => $res[$i]['item_id'],
-				'item_name' => $res[$i]['item_name'],
-				'item_stock' => $res[$i]['item_stock']
+		$result = json_encode(array(
+				'item_id' => $res['item_id'],
+				'item_stock' => $res['item_stock']
 			));
-		}
-		exit(json_encode($items));
+		exit($result);
 	}
 
 	function detail($id=null){

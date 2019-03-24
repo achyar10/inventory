@@ -23,9 +23,6 @@
         <div class="row">
           <div class="col-md-12">
             <div class="pull-left">
-              <address>
-                <h3> &nbsp;<b class="text-danger"><?php echo $stock->branch_name ?></b></h3>
-              </address>
               <p class="m-t-30"><b>User Input :</b> <?php echo $stock->user_full_name ?></p>
               <p class="m-t-30"><b>Tanggal Buat :</b> <i class="fa fa-calendar"></i> <?php echo $stock->stock_created_at ?></p>
             </div>

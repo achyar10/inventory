@@ -84,6 +84,7 @@
 
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?php echo site_url() ?>assets/js/jquery.noty.packaged.min.js"></script>
+<script src="<?php echo site_url() ?>assets/js/jquery-migrate-3.0.0.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo site_url() ?>assets/js/app-style-switcher.js"></script>

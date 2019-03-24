@@ -25,22 +25,26 @@
                 <tr>
                   <th>No</th>
                   <th>No Transaksi</th>
+                  <th>Cabang</th>
                   <th>Tanggal Buat</th>
+                  <th>Status</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                if (!empty($stock)) {
+                if (!empty($mutation)) {
                   $i = $jlhpage+1;
-                  foreach ($stock as $row):
+                  foreach ($mutation as $row):
                     ?>
                     <tr>
                       <td><?php echo $i++ ?></td>
-                      <td><?php echo $row->stock_no_trx ?></td>
-                      <td><?php echo $row->stock_created_at ?></td>
+                      <td><?php echo $row->mutation_no_trx ?></td>
+                      <td><?php echo $row->branch_name ?></td>
+                      <td><?php echo $row->mutation_created_at ?></td>
+                      <td><span class="badge badge-<?= ($row->mutation_status) ? 'success' : 'warning' ?>"><?= ($row->mutation_status) ? 'Diterima' : 'Terkirim' ?></span></td>
                       <td>
-                        <a href="<?php echo site_url('stock/detail/'.$row->stock_id) ?>" class="btn btn-dark btn-sm">Detail</a>
+                        <a href="<?php echo site_url('mutation/detail/'.$row->mutation_id) ?>" class="btn btn-dark btn-sm">Detail</a>
                       </td>
                     </tr>
                     <?php
@@ -48,7 +52,7 @@
                 } else {
                   ?>
                   <tr id="row">
-                    <td colspan="5" align="center">Data Kosong</td>
+                    <td colspan="6" align="center">Data Kosong</td>
                   </tr>
                 <?php } ?>
               </tbody>
@@ -67,12 +71,22 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="formModalLabel">Tambah Stock</h4>
+        <h4 class="modal-title" id="formModalLabel">Tambah Mutasi Barang</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body">
-        <form action="<?php echo site_url('stock/add') ?>" method="post">
-          <div id="resep">
+        <form action="<?php echo site_url('mutation/add') ?>" method="post">
+
+          <div class="form-group">
+            <label>Cabang</label>
+            <select name="branch_id" class="form-control">
+              <option value="">--Pilih Cabang--</option>
+              <?php foreach ($branch as $key): ?>
+                <option value="<?php echo $key->branch_id ?>"><?php echo $key->branch_name ?></option>
+              <?php endforeach ?>
+            </select>
+          </div>
+          <div id="">
             <table class="table">
               <thead>
                 <tr>

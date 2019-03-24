@@ -30,16 +30,15 @@
           </a>
         </li>
 
-        <li class="sidebar-item"> 
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('item') ?>" aria-expanded="false">
-            <i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang</span>
-          </a>
-        </li>
-
-        <li class="sidebar-item"> 
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('stock') ?>" aria-expanded="false">
-            <i class="mdi mdi-file-check"></i><span class="hide-menu">Stok</span>
-          </a>
+        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang </span></a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?php echo site_url('item') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Barang </span></a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo site_url('stock') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Stock </span></a>
+            </li>
+          </ul>
         </li>
 
         <li class="sidebar-item"> 
@@ -48,13 +47,13 @@
           </a>
         </li>
 
-         <li class="sidebar-item"> 
+        <li class="sidebar-item"> 
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('distributor') ?>" aria-expanded="false">
             <i class="mdi mdi-car"></i><span class="hide-menu">Distributor</span>
           </a>
         </li>
 
-         <li class="sidebar-item"> 
+        <li class="sidebar-item"> 
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('user') ?>" aria-expanded="false">
             <i class="mdi mdi-account-multiple"></i><span class="hide-menu">Pengguna</span>
           </a>
