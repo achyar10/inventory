@@ -5,7 +5,6 @@ class Stock_model extends CI_Model {
 
 	public function get_stock($arr=null, $limit=null, $offset=null){
 		$this->db->join('users', 'users.user_id = stocks.user_id', 'left');
-		$this->db->join('branches', 'branches.branch_id = stocks.branch_id', 'left');
 		return $this->db->get_where('stocks', $arr, $limit, $offset);
 	}
 

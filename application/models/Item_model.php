@@ -5,7 +5,6 @@ class Item_model extends CI_Model {
 
 	public function get_item($arr=null, $limit=null, $offset=null){
 		// $this->db->order_by('')
-		$this->db->join('branches', 'branches.branch_id = items.branch_id', 'left');
 		$this->db->join('distributors', 'distributors.distributor_id = items.distributor_id', 'left');
 		return $this->db->get_where('items', $arr, $limit, $offset);
 	}

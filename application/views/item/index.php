@@ -26,7 +26,6 @@
                   <th>No</th>
                   <th>SKU</th>
                   <th>Nama Barang</th>
-                  <th>Cabang</th>
                   <th>Stock</th>
                   <th>Aksi</th>
                 </tr>
@@ -41,7 +40,6 @@
                       <td><?php echo $i++ ?></td>
                       <td><?php echo $row->item_sku ?></td>
                       <td><?php echo $row->item_name ?></td>
-                      <td><?php echo $row->branch_name ?></td>
                       <td><?php echo $row->item_stock ?></td>
                       <td>
                         <a href="#" class="btn btn-success btn-sm tampilModalUbah" data-toggle="modal" data-target="#formModal" data-id="<?php echo $row->item_id; ?>">Edit</a>
@@ -95,15 +93,6 @@
           <div class="form-group">
             <label>Harga</label>
             <input type="text" class="form-control" id="item_price" name="item_price" autocomplete="off">
-          </div>
-
-          <div class="form-group">
-            <label>Cabang</label>
-            <select name="branch_id" id="branchSelect" class="form-control">
-              <?php foreach ($branch as $key): ?>
-                <option value="<?php echo $key->branch_id ?>"><?php echo $key->branch_name ?></option>
-              <?php endforeach ?>
-            </select>
           </div>
 
           <div class="form-group">
@@ -181,7 +170,6 @@
           $('#item_name').val(data.item_name);
           $('#item_merk').val(data.item_merk);
           $('#item_price').val(data.item_price);
-          $('#branchSelect').val(data.branch_id);
           $('#distSelect').val(data.distributor_id);
           $('#target').attr('src', link);
           $('#id').val(data.item_id);

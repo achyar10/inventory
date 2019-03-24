@@ -6,9 +6,8 @@ class Stock extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// if(!$this->session->userdata('logged')) redirect('auth/login');
+		if(!$this->session->userdata('logged')) redirect('auth/login');
 		$this->load->model('Stock_model');
-		$this->load->model('Branch_model');
 		$this->load->model('Item_model');
 	}
 
@@ -36,7 +35,6 @@ class Stock extends CI_Controller {
 
 		$data['jlhpage']= $page;
 		$data['stock'] = $this->Stock_model->get_stock(null,$limit,$offset)->result();
-		$data['branch'] = $this->Branch_model->get_branch()->result();
 
 		$data['title'] = 'Stok';
 		$data['main'] = 'stock/index';
@@ -59,7 +57,6 @@ class Stock extends CI_Controller {
 		}
 
 		$params['stock_no_trx'] = $no_trx;
-		$params['branch_id'] = $this->input->post('branch_id');
 		$params['user_id'] = $this->session->userdata('user_id');
 		$id_stock = $this->Stock_model->insert_stock($params);
 

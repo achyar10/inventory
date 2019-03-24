@@ -8,7 +8,6 @@ class Item extends CI_Controller {
 		parent::__construct();
 		if(!$this->session->userdata('logged')) redirect('auth/login');
 		$this->load->model('Item_model');
-		$this->load->model('Branch_model');
 		$this->load->model('Distributor_model');
 	}
 
@@ -36,7 +35,6 @@ class Item extends CI_Controller {
 
 		$data['jlhpage']= $page;
 		$data['item'] = $this->Item_model->get_item(null,$limit,$offset)->result();
-		$data['branch'] = $this->Branch_model->get_branch()->result();
 		$data['distributor'] = $this->Distributor_model->get_distributor()->result();
 
 		$data['title'] = 'Barang';
@@ -49,7 +47,6 @@ class Item extends CI_Controller {
 		$params['item_sku'] = $this->input->post('item_sku');
 		$params['item_merk'] = $this->input->post('item_merk');
 		$params['item_price'] = $this->input->post('item_price');
-		$params['branch_id'] = $this->input->post('branch_id');
 		$params['distributor_id'] = $this->input->post('distributor_id');
 		$params['item_stock'] = 0;
 
@@ -59,9 +56,6 @@ class Item extends CI_Controller {
 
 		if (!empty($_FILES['item_image']['name'])) {
 			$paramsUpdate['item_image'] = $this->upload_image('item_image', $fullname);
-			// echo $paramsUpdate['item_image'];
-			// echo $id;
-			// die();
 			$this->Item_model->update_item($paramsUpdate, ['item_id'=>$id]);
 		} 
 
@@ -75,7 +69,6 @@ class Item extends CI_Controller {
 		$params['item_sku'] = $this->input->post('item_sku');
 		$params['item_merk'] = $this->input->post('item_merk');
 		$params['item_price'] = $this->input->post('item_price');
-		$params['branch_id'] = $this->input->post('branch_id');
 		$params['distributor_id'] = $this->input->post('distributor_id');
 
 		$full = time().rand(1111,9999);
