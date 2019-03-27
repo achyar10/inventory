@@ -24,8 +24,7 @@
 			<div class="auth-box">
 				<div id="loginform">
 					<div class="logo">
-						<span class="db"><img src="<?php echo site_url() ?>assets/images/logo-icon.png" alt="logo" /></span>
-						<h5 class="font-medium m-b-20">Sign In to Admin</h5>
+						<span class="db"><img src="<?php echo site_url() ?>assets/images/logo-safira-full.png" alt="logo" height="100" /></span>
 					</div>
 					<!-- Form -->
 					<div class="row">

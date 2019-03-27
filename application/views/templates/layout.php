@@ -14,6 +14,7 @@
   <!-- Custom CSS -->
   <link href="<?php echo site_url() ?>assets/css/style.min.css" rel="stylesheet">
   <link href="<?php echo site_url() ?>assets/css/noty.css" rel="stylesheet">
+  <link href="<?php echo site_url() ?>assets/css/jquery.dataTables.min.css" rel="stylesheet">
 
   <script src="<?php echo site_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="<?php echo site_url() ?>assets/js/jquery.validate.min.js"></script>
@@ -34,11 +35,8 @@
           <a class="navbar-brand" href="<?php echo site_url('/') ?>">
             <!-- Logo icon -->
             <b class="logo-icon">
-              <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-              <!-- Dark Logo icon -->
-              <img src="<?php echo site_url() ?>assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
               <!-- Light Logo icon -->
-              <img src="<?php echo site_url() ?>assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+              <img src="<?php echo site_url() ?>assets/images/logo-safira-full.png" alt="homepage" class="light-logo" height="50" />
             </b>
             <!--End Logo icon -->
             <!-- Logo text -->
@@ -94,6 +92,7 @@
 <script src="<?php echo site_url() ?>assets/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="<?php echo site_url() ?>assets/js/custom.js"></script>
+<script src="<?php echo site_url() ?>assets/js/jquery.dataTables.min.js"></script>
 </body>
 
 <script type="text/javascript">

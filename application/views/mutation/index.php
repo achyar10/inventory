@@ -18,7 +18,9 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <button type="button" class="btn btn-danger btn-sm float-right mb-3 tombolTambahData" data-toggle="modal" data-target="#formModal"><i class="fa fa-plus"></i> Tambah</button>
+          <?php if($this->session->userdata('user_role') == SUPERADMIN) { ?>
+            <button type="button" class="btn btn-danger btn-sm float-right mb-3 tombolTambahData" data-toggle="modal" data-target="#formModal"><i class="fa fa-plus"></i> Tambah</button>
+          <?php } ?>
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>

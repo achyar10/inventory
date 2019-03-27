@@ -30,16 +30,30 @@
           </a>
         </li>
 
-        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang </span></a>
-          <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item">
-              <a href="<?php echo site_url('item') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Barang </span></a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo site_url('stock') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Stock </span></a>
-            </li>
-          </ul>
+        <li class="sidebar-item"> 
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('mutation') ?>" aria-expanded="false">
+            <i class="mdi mdi-transfer"></i><span class="hide-menu">Mutasi</span>
+          </a>
         </li>
+
+        <?php if($this->session->userdata('user_role') == SUPERADMIN){ ?>
+          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang </span></a>
+            <ul aria-expanded="false" class="collapse  first-level">
+              <li class="sidebar-item">
+                <a href="<?php echo site_url('item') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Barang </span></a>
+              </li>
+              <li class="sidebar-item">
+                <a href="<?php echo site_url('stock') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Stock </span></a>
+              </li>
+            </ul>
+          </li>
+        <?php } else { ?>
+          <li class="sidebar-item"> 
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('item_branch') ?>" aria-expanded="false">
+            <i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang</span>
+          </a>
+        </li>
+        <?php } ?>
 
         <li class="sidebar-item"> 
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('branch') ?>" aria-expanded="false">

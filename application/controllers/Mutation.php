@@ -27,17 +27,23 @@ class Mutation extends CI_Controller {
 		else:
 			$offset = $page;
 		endif;
+
+		if($this->session->userdata('user_role') != SUPERADMIN){
+			$params['mutations.branch_id'] = $this->session->userdata('branch_id');
+		} else {
+			$params = null;
+		}
 		
 		$config['page_query_string'] = TRUE;
 		$config['enable_query_strings'] = TRUE;
 		$config['query_string_segment'] = 'per_page';
 		$config['base_url'] = site_url('mutation');
 		$config['per_page'] = $limit;
-		$config['total_rows'] = $this->Mutation_model->get_mutation()->num_rows();
+		$config['total_rows'] = $this->Mutation_model->get_mutation($params)->num_rows();
 		$this->pagination->initialize($config);
 
 		$data['jlhpage']= $page;
-		$data['mutation'] = $this->Mutation_model->get_mutation(null,$limit,$offset)->result();
+		$data['mutation'] = $this->Mutation_model->get_mutation($params,$limit,$offset)->result();
 		$data['item'] = $this->Item_model->get_item()->result_array();
 		$data['branch'] = $this->Branch_model->get_branch()->result();
 
