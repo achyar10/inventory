@@ -22,11 +22,17 @@
             </div>
           </div>
         </li>
-        <li class="p-15 m-t-10"><a href="<?php echo site_url('payout') ?>" class="btn btn-block create-btn text-white no-block d-flex align-items-center"><i class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">Buat Transaksi</span> </a></li>
+        <li class="p-15 m-t-10"><a href="<?php echo site_url('transaction') ?>" class="btn btn-block create-btn text-white no-block d-flex align-items-center"><i class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">Buat Transaksi</span> </a></li>
         <!-- User Profile-->
         <li class="sidebar-item"> 
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('dashboard') ?>" aria-expanded="false">
             <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item"> 
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('transaction/list') ?>" aria-expanded="false">
+            <i class="mdi mdi-cash-multiple"></i><span class="hide-menu">Transaksi</span>
           </a>
         </li>
 
