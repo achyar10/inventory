@@ -32,6 +32,8 @@ class Transaction extends CI_Controller {
 
 	function process(){
 
+		$this->db->trans_start();
+
 		$lastno = $this->Transaction_model->get_transaction(null,1)->row_array();
 
 		if (date('Y', strtotime($lastno['transaction_created_at'])) < date('Y') OR (count($lastno)) == 0) {
@@ -71,10 +73,27 @@ class Transaction extends CI_Controller {
 				]);
 			}
 		}
-		$this->db->insert_batch('transaction_details', $detail);
-		$this->Item_branch_model->update_stock_batch($item_branch_id, $qty, '-');
-		$this->session->set_flashdata('success', 'Transaksi berhasil');
-		redirect('transaction/detail/'.$id_trx);
+
+		if(!empty($detail)){
+			$this->db->insert_batch('transaction_details', $detail);
+			$this->Item_branch_model->update_stock_batch($item_branch_id, $qty, '-');
+
+			$this->db->trans_complete();
+
+			if($this->db->trans_status() === FALSE) {
+				$this->db->trans_rollback();
+				$this->session->set_flashdata('failed','Data not saved.');
+				redirect('transaction');
+			} else {
+				$this->db->trans_commit();
+				$this->session->set_flashdata('success','Transaksi Berhasil');
+				redirect('transaction/detail/'.$id_trx);
+			} 
+
+		} else {
+			$this->session->set_flashdata('failed','Quantity tidak boleh 0 semua');
+			redirect('transaction');
+		}
 	}
 
 	function getItem(){
@@ -96,7 +115,11 @@ class Transaction extends CI_Controller {
 		endif;
 
 
-		$params['transactions.branch_id'] = $this->session->userdata('branch_id');
+		if($this->session->userdata('user_role') != SUPERADMIN){
+			$params['transactions.branch_id'] = $this->session->userdata('branch_id');
+		} else {
+			$params = null;
+		}
 		
 		$config['page_query_string'] = TRUE;
 		$config['enable_query_strings'] = TRUE;

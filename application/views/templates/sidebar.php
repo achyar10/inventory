@@ -55,30 +55,31 @@
           </li>
         <?php } else { ?>
           <li class="sidebar-item"> 
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('item_branch') ?>" aria-expanded="false">
-            <i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang</span>
-          </a>
-        </li>
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('item_branch') ?>" aria-expanded="false">
+              <i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang</span>
+            </a>
+          </li>
         <?php } ?>
 
-        <li class="sidebar-item"> 
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('branch') ?>" aria-expanded="false">
-            <i class="mdi mdi-home-variant"></i><span class="hide-menu">Cabang</span>
-          </a>
-        </li>
+        <?php if($this->session->userdata('user_role') == SUPERADMIN){ ?>
+          <li class="sidebar-item"> 
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('branch') ?>" aria-expanded="false">
+              <i class="mdi mdi-home-variant"></i><span class="hide-menu">Cabang</span>
+            </a>
+          </li>
 
-        <li class="sidebar-item"> 
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('distributor') ?>" aria-expanded="false">
-            <i class="mdi mdi-car"></i><span class="hide-menu">Distributor</span>
-          </a>
-        </li>
+          <li class="sidebar-item"> 
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('distributor') ?>" aria-expanded="false">
+              <i class="mdi mdi-car"></i><span class="hide-menu">Distributor</span>
+            </a>
+          </li>
 
-        <li class="sidebar-item"> 
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('user') ?>" aria-expanded="false">
-            <i class="mdi mdi-account-multiple"></i><span class="hide-menu">Pengguna</span>
-          </a>
-        </li>
-
+          <li class="sidebar-item"> 
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('user') ?>" aria-expanded="false">
+              <i class="mdi mdi-account-multiple"></i><span class="hide-menu">Pengguna</span>
+            </a>
+          </li>
+        <?php } ?>
       </ul>
 
     </nav>
