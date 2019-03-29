@@ -20,7 +20,7 @@
     <div class="col-md-12">
       <div class="card card-body printableArea">
         <h3><span class="pull-right"><?php echo $trx->transaction_no_trx ?></span>
-        <a href="" class="btn btn-success float-right"><i class="fa fa-print"></i> Cetak</a>
+        <a href="<?php echo site_url('transaction/printInv/'.$trx->transaction_id) ?>" class="btn btn-success float-right"><i class="fa fa-print"></i> Cetak</a>
         </h3>
         <hr>
         <div class="row">
