@@ -21,6 +21,29 @@ class Transaction_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	function get_report_trans($params = array()){
+		if (isset($params['branch_id'])) {
+			$this->db->where('transactions.branch_id', $params['branch_id']);
+		}
+		if(isset($params['date_start']) AND isset($params['date_end'])){
+			$this->db->where('transaction_created_at >=', $params['date_start'] . ' 00:00:00');
+			$this->db->where('transaction_created_at <=', $params['date_end'] . ' 23:59:59');
+		}
+
+		$this->db->join('transactions', 'transactions.transaction_id = transaction_details.transaction_id', 'left');
+		$this->db->join('branches', 'branches.branch_id = transactions.branch_id', 'left');
+		$this->db->join('item_branch', 'item_branch.item_branch_id = transaction_details.item_branch_id', 'left');
+		$this->db->join('items', 'items.item_id = item_branch.item_id', 'left');
+		$this->db->join('users', 'users.user_id = transactions.user_id', 'left');
+		$res = $this->db->get('transaction_details');
+
+		if(isset($params['id'])){
+			return $res->row_array();
+		} else {
+			return $res->result_array();
+		}
+	}
+
 
 	
 

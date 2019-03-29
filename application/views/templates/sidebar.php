@@ -61,6 +61,17 @@
           </li>
         <?php } ?>
 
+        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file-document-box"></i><span class="hide-menu">Laporan </span></a>
+            <ul aria-expanded="false" class="collapse  first-level">
+              <li class="sidebar-item">
+                <a href="<?php echo site_url('report/transaction') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Transaksi </span></a>
+              </li>
+              <li class="sidebar-item">
+                <a href="<?php echo site_url('report/mutation') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Mutasi </span></a>
+              </li>
+            </ul>
+          </li>
+
         <?php if($this->session->userdata('user_role') == SUPERADMIN){ ?>
           <li class="sidebar-item"> 
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('branch') ?>" aria-expanded="false">

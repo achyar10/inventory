@@ -149,7 +149,7 @@ class Transaction extends CI_Controller {
 		$mpdf = new \Mpdf\Mpdf(['format' => 'A4']);
 		$data['trx'] = $this->Transaction_model->get_transaction(['transactions.transaction_id'=>$id])->row();
 		$data['detail'] = $this->Transaction_model->get_transaction_detail(['transaction_details.transaction_id'=>$id])->result();
-		$fileName = 'test';
+		$fileName = $data['trx']->transaction_no_trx;
 		$data['title'] = $fileName;
 		$html = $this->load->view('transaction/transaction_invoice', $data, TRUE);
 		$mpdf->WriteHTML(utf8_encode($html));

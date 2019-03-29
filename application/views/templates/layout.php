@@ -14,6 +14,7 @@
   <!-- Custom CSS -->
   <link href="<?php echo site_url() ?>assets/css/style.min.css" rel="stylesheet">
   <link href="<?php echo site_url() ?>assets/css/noty.css" rel="stylesheet">
+  <link href="<?php echo site_url() ?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <link href="<?php echo site_url() ?>assets/css/jquery.dataTables.min.css" rel="stylesheet">
 
   <script src="<?php echo site_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
@@ -82,6 +83,7 @@
 
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?php echo site_url() ?>assets/js/jquery.noty.packaged.min.js"></script>
+<script src="<?php echo site_url() ?>assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo site_url() ?>assets/js/jquery-migrate-3.0.0.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?php echo site_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -96,52 +98,61 @@
 </body>
 
 <script type="text/javascript">
+  
+  $('.datepicker').datepicker({
+    uiLibrary: 'bootstrap4',
+    autoclose: true, 
+    todayHighlight: true,
+    format:'yyyy-mm-dd',
+    orientation: 'bottom auto'
+  });
+
   <?php if ($this->session->flashdata('success')) { ?>
    $(document).ready(function () {
 
-                noty({
-                text        : '<div class="activity-item"> <i class="fa fa-check text-success"></i> <div class="activity"> <?php echo $this->session->flashdata('success') ?> </div> </div>',
-                type        : 'success',
-                dismissQueue: true,
-                progressBar : true,
-                timeout     : 5000,
-                layout      : 'topRight',
-                closeWith   : ['click'],
-                theme       : 'relax',
-                maxVisible  : 10,
-                animation   : {
-                    open  : 'animated bounceInRight',
-                    close : 'animated bounceOutRight',
-                    easing: 'swing',
-                    speed : 500
-                }
-            });
+    noty({
+      text        : '<div class="activity-item"> <i class="fa fa-check text-success"></i> <div class="activity"> <?php echo $this->session->flashdata('success') ?> </div> </div>',
+      type        : 'success',
+      dismissQueue: true,
+      progressBar : true,
+      timeout     : 5000,
+      layout      : 'topRight',
+      closeWith   : ['click'],
+      theme       : 'relax',
+      maxVisible  : 10,
+      animation   : {
+        open  : 'animated bounceInRight',
+        close : 'animated bounceOutRight',
+        easing: 'swing',
+        speed : 500
+      }
+    });
 
-        });
-<?php } ?>
-  <?php if ($this->session->flashdata('failed')) { ?>
+  });
+ <?php } ?>
+ <?php if ($this->session->flashdata('failed')) { ?>
    $(document).ready(function () {
 
-                noty({
-                text        : '<div class="activity-item"> <i class="fa fa-window-close text-danger"></i> <div class="activity"> <?php echo $this->session->flashdata('failed') ?> </div> </div>',
-                type        : 'failed',
-                dismissQueue: true,
-                progressBar : true,
-                timeout     : 5000,
-                layout      : 'topRight',
-                closeWith   : ['click'],
-                theme       : 'relax',
-                maxVisible  : 10,
-                animation   : {
-                    open  : 'animated bounceInRight',
-                    close : 'animated bounceOutRight',
-                    easing: 'swing',
-                    speed : 500
-                }
-            });
+    noty({
+      text        : '<div class="activity-item"> <i class="fa fa-window-close text-danger"></i> <div class="activity"> <?php echo $this->session->flashdata('failed') ?> </div> </div>',
+      type        : 'failed',
+      dismissQueue: true,
+      progressBar : true,
+      timeout     : 5000,
+      layout      : 'topRight',
+      closeWith   : ['click'],
+      theme       : 'relax',
+      maxVisible  : 10,
+      animation   : {
+        open  : 'animated bounceInRight',
+        close : 'animated bounceOutRight',
+        easing: 'swing',
+        speed : 500
+      }
+    });
 
-        });
-<?php } ?>
+  });
+ <?php } ?>
 </script>
 
 </html>

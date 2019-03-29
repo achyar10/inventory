@@ -15,6 +15,7 @@
 		table	{
 			border-collapse: collapse;
 			font-size: 11pt;
+			border-width: thick;
 		}
 		td{
 			height: 30px;
