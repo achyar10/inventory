@@ -24,6 +24,28 @@ class Mutation_model extends CI_Model {
 		return $this->db->update('mutations', $data, $condition);
 	}
 
+	function get_report_mutation($params = array()){
+		if (isset($params['branch_id'])) {
+			$this->db->where('mutations.branch_id', $params['branch_id']);
+		}
+		if(isset($params['date_start']) AND isset($params['date_end'])){
+			$this->db->where('mutation_created_at >=', $params['date_start'] . ' 00:00:00');
+			$this->db->where('mutation_created_at <=', $params['date_end'] . ' 23:59:59');
+		}
+
+		$this->db->join('mutations', 'mutations.mutation_id = mutation_details.mutation_id', 'left');
+		$this->db->join('branches', 'branches.branch_id = mutations.branch_id', 'left');
+		$this->db->join('items', 'items.item_id = mutation_details.item_id', 'left');
+		$this->db->join('users', 'users.user_id = mutations.user_id', 'left');
+		$res = $this->db->get('mutation_details');
+
+		if(isset($params['id'])){
+			return $res->row_array();
+		} else {
+			return $res->result_array();
+		}
+	}
+
 	
 
 }
