@@ -95,6 +95,7 @@
 <!--Custom JavaScript -->
 <script src="<?php echo site_url() ?>assets/js/custom.js"></script>
 <script src="<?php echo site_url() ?>assets/js/jquery.dataTables.min.js"></script>
+
 </body>
 
 <script type="text/javascript">
