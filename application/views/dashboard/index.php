@@ -45,9 +45,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                   <div class="d-flex align-items-center">
-                    <div class="m-r-10"><span class="text-cyan display-5"><i class="mdi mdi-star-circle"></i></span></div>
-                    <div><span>Referral Earnings</span>
-                      <h3 class="font-medium m-b-0">$769.08</h3>
+                    <div class="m-r-10"><span class="text-cyan display-5"><i class="mdi mdi-car"></i></span></div>
+                    <div><span>Distibutor</span>
+                      <h3 class="font-medium m-b-0"><?php echo $total_dist ?></h3>
                     </div>
                   </div>
                 </div>
@@ -62,9 +62,9 @@
                   </div>
                   <div class="col-lg-6 col-md-6">
                     <div class="d-flex align-items-center">
-                      <div class="m-r-10"><span class="text-primary display-5"><i class="mdi mdi-currency-usd"></i></span></div>
-                      <div><span>Earnings</span>
-                        <h3 class="font-medium m-b-0">$23,568.90</h3>
+                      <div class="m-r-10"><span class="text-primary display-5"><i class="mdi mdi-account-multiple"></i></span></div>
+                      <div><span>Admin</span>
+                        <h3 class="font-medium m-b-0"><?php echo $total_user ?></h3>
                       </div>
                     </div>
                   </div>

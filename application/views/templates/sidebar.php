@@ -48,7 +48,7 @@
               <i class="mdi mdi-transfer"></i><span class="hide-menu">Pemesanan Barang</span>
             </a>
           </li>
-          
+
           <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-cellphone"></i><span class="hide-menu">Barang </span></a>
             <ul aria-expanded="false" class="collapse  first-level">
               <li class="sidebar-item">
@@ -74,6 +74,9 @@
             </li>
             <li class="sidebar-item">
               <a href="<?php echo site_url('report/mutation') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Mutasi </span></a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo site_url('report/stock') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Barang Masuk </span></a>
             </li>
           </ul>
         </li>

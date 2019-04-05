@@ -15,6 +15,7 @@ class Report extends CI_Controller {
 		$this->load->model('Item_model');
 		$this->load->model('Item_branch_model');
 		$this->load->model('Mutation_model');
+		$this->load->model('Stock_model');
 	}
 
 	public function index()
@@ -202,6 +203,100 @@ class Report extends CI_Controller {
 		->applyFromArray($font);
 		$spreadsheet->getActiveSheet()
 		->getStyle('A5:H5')
+		->getFill()
+		->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+		->getStartColor()
+		->setARGB('000');
+		$spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold( true );
+		$writer = new Xlsx($spreadsheet);
+		$filename = 'Laporan_'.date('Ymdhis');
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
+	}
+
+	// Stock
+	function stock(){
+
+		$q = $this->input->get(NULL, TRUE);
+
+		$data['q'] = $q;
+		$params = array();
+
+		if (isset($q['ds']) && !empty($q['ds']) && $q['ds'] != '') {
+			$params['date_start'] = $q['ds'];
+		}
+		if (isset($q['de']) && !empty($q['de']) && $q['de'] != '') {
+			$params['date_end'] = $q['de'];
+		}
+
+		$config['base_url'] = site_url('report/stock');
+		$config['suffix'] = '?' . http_build_query($_GET, '', "&");
+		$data['title'] = 'Laporan Barang Masuk';
+		$data['main'] = 'report/stock';
+		$this->load->view('templates/layout', $data);
+	}
+
+	function stock_export(){
+
+		$q = $this->input->get(NULL, TRUE);
+
+		$data['q'] = $q;
+		$params = array();
+
+		if (isset($q['ds']) && !empty($q['ds']) && $q['ds'] != '') {
+			$params['date_start'] = $q['ds'];
+		}
+		if (isset($q['de']) && !empty($q['de']) && $q['de'] != '') {
+			$params['date_end'] = $q['de'];
+		}
+
+		$order = $this->Stock_model->get_report_stock($params);
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();          
+		$cell     = 6;        
+		$no       = 1;
+		$sheet->setCellValue('A1', 'Laporan Barang Masuk');
+		$sheet->setCellValue('A2', 'CV. Safira Telekomindo');
+		$sheet->setCellValue('A3', 'Tanggal Laporan: '.date('d F Y', strtotime($q['ds'])).' s/d '.date('d F Y', strtotime($q['de'])));
+		$sheet->setCellValue('A4', 'Tanggal Unduh: '.date('Y-m-d h:i:s'));
+		$sheet->setCellValue('C4', 'Pengunduh: '.$this->session->userdata('full_name'));
+		
+		$sheet->setCellValue('A5', 'NO');
+		$sheet->setCellValue('B5', 'NO TRANSAKSI');
+		$sheet->setCellValue('C5', 'TANGGAL');
+		$sheet->setCellValue('D5', 'SKU');
+		$sheet->setCellValue('E5', 'NAMA BARANG');
+		$sheet->setCellValue('F5', 'JUMLAH MASUK');
+		$sheet->setCellValue('G5', 'KETERANGAN');
+		foreach ($order as $row) {
+			$sheet->setCellValue('A'.$cell, $no);
+			$sheet->setCellValue('B'.$cell, $row['stock_no_trx']);
+			$sheet->setCellValue('C'.$cell, $row['stock_created_at']);
+			$sheet->setCellValue('D'.$cell, $row['item_sku']);
+			$sheet->setCellValue('E'.$cell, $row['item_name']);
+			$sheet->setCellValue('F'.$cell, $row['qty']);
+			$sheet->setCellValue('G'.$cell, '');
+			$cell++;
+			$no++; 
+		}
+		$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+		$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+		$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+		foreach(range('D', 'Z') as $alphabet)
+		{
+			$spreadsheet->getActiveSheet()->getColumnDimension($alphabet)->setWidth(20);
+		}
+		$spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(20);
+		$font = array('font' => array( 'bold' => true, 'color' => array(
+			'rgb'  => 'FFFFFF')));
+		$spreadsheet->getActiveSheet()
+		->getStyle('A5:G5')
+		->applyFromArray($font);
+		$spreadsheet->getActiveSheet()
+		->getStyle('A5:G5')
 		->getFill()
 		->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
 		->getStartColor()

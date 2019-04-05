@@ -10,6 +10,8 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Transaction_model');
 		$this->load->model('Branch_model');
 		$this->load->model('Item_branch_model');
+		$this->load->model('Distributor_model');
+		$this->load->model('User_model');
 	}
 
 	public function index()
@@ -27,6 +29,8 @@ class Dashboard extends CI_Controller {
 		$detail = $this->Transaction_model->get_transaction_detail($params)->result();
 		$data['total_branch'] = count($this->Branch_model->get_branch()->result());
 		$data['total_item_branch'] = count($this->Item_branch_model->get_item_branch()->result());
+		$data['total_dist'] = count($this->Distributor_model->get_distributor()->result());
+		$data['total_user'] = count($this->User_model->get_user()->result());
 
 		$data['total_trx'] = 0;
 		foreach ($trx as $key) {

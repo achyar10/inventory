@@ -37,6 +37,24 @@ class Stock_model extends CI_Model {
 		}
 	}
 
+	function get_report_stock($params = array()){
+		if(isset($params['date_start']) AND isset($params['date_end'])){
+			$this->db->where('stock_created_at >=', $params['date_start'] . ' 00:00:00');
+			$this->db->where('stock_created_at <=', $params['date_end'] . ' 23:59:59');
+		}
+
+		$this->db->join('stocks', 'stocks.stock_id = stock_details.stock_id', 'left');
+		$this->db->join('items', 'items.item_id = stock_details.item_id', 'left');
+		$this->db->join('users', 'users.user_id = stocks.user_id', 'left');
+		$res = $this->db->get('stock_details');
+
+		if(isset($params['id'])){
+			return $res->row_array();
+		} else {
+			return $res->result_array();
+		}
+	}
+
 	
 
 	

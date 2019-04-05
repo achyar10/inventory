@@ -42,10 +42,7 @@
             <!--End Logo icon -->
             <!-- Logo text -->
             <span class="logo-text">
-             <!-- dark Logo text -->
-             <img src="<?php echo site_url() ?>assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-             <!-- Light Logo text -->    
-             <img src="<?php echo site_url() ?>assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+              CV. Safira
            </span>
          </a>
          <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
