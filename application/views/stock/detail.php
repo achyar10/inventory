@@ -51,7 +51,7 @@
           </div>
           <div class="col-md-12">
             <div class="text-right">
-              <button id="print" class="btn btn-danger btn-outline" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+              <!-- <button id="print" class="btn btn-danger btn-outline" type="button"> <span><i class="fa fa-print"></i> Print</span> </button> -->
             </div>
           </div>
         </div>

@@ -42,7 +42,7 @@
             <!--End Logo icon -->
             <!-- Logo text -->
             <span class="logo-text">
-              CV. Safira
+              Safira Telekomindo
            </span>
          </a>
          <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>

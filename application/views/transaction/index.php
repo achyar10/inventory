@@ -32,10 +32,10 @@
             <tbody id="addPay">
 
             </tbody>
-            <tr class="bg-dark text-white">
+            <!-- <tr class="bg-dark text-white">
                 <td colspan="3">Grand Total</td>
                 <td colspan="2" class="gTotal">0</td>
-              </tr>
+              </tr> -->
           </table>
         </div>
         <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah anda akan melakukan proses transaksi ini ?')">Proses Bayar</button>

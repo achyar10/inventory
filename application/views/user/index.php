@@ -133,7 +133,7 @@ $roles = ['Super Admin', 'Admin', 'User'];
 
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success waves-effect">Tambah Data</button>
+          <button type="submit" class="btn btn-success waves-effect kirim">Tambah Data</button>
         </div>
       </form>
     </div>
@@ -141,6 +141,7 @@ $roles = ['Super Admin', 'Admin', 'User'];
 </div>
 
 <script>
+
   var validator = $("#tambahUser").validate({
   rules: {
     password: {

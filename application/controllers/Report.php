@@ -16,6 +16,7 @@ class Report extends CI_Controller {
 		$this->load->model('Item_branch_model');
 		$this->load->model('Mutation_model');
 		$this->load->model('Stock_model');
+		$this->load->model('Distributor_model');
 	}
 
 	public function index()
@@ -139,6 +140,15 @@ class Report extends CI_Controller {
 		$config['suffix'] = '?' . http_build_query($_GET, '', "&");
 		$data['title'] = 'Laporan Mutasi';
 		$data['main'] = 'report/mutation';
+		$this->load->view('templates/layout', $data);
+	}
+
+	function distributor(){
+
+		$config['base_url'] = site_url('report/mutation');
+		$data['distributor'] = $this->Distributor_model->get_distributor()->result();
+		$data['title'] = 'Laporan Distributor';
+		$data['main'] = 'report/distributor';
 		$this->load->view('templates/layout', $data);
 	}
 
@@ -309,6 +319,19 @@ class Report extends CI_Controller {
 		header('Cache-Control: max-age=0');
 		$writer->save('php://output');
 	}
+
+	function printDist($id=null){
+		$mpdf = new \Mpdf\Mpdf(['format' => 'A4']);
+		$data['distributor'] = $this->Distributor_model->get_distributor()->result();
+		$fileName = 'Laporan Distributor';
+		$data['title'] = $fileName;
+		$html = $this->load->view('report/distributor_pdf', $data, TRUE);
+		$mpdf->WriteHTML(utf8_encode($html));
+		$mpdf->Output($fileName. ".pdf", 'I');
+
+	}
+
+
 
 }
 

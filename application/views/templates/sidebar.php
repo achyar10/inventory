@@ -78,6 +78,9 @@
             <li class="sidebar-item">
               <a href="<?php echo site_url('report/stock') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Barang Masuk </span></a>
             </li>
+            <li class="sidebar-item">
+              <a href="<?php echo site_url('report/distributor') ?>" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Distributor </span></a>
+            </li>
           </ul>
         </li>
 
